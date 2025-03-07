@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+        .hero img {
+            max-width: 350px;
+            height: 400px;
+            margin-left: 100px;
+            padding-right: 30px;
+        }
+        .content {
+            max-width: 500px;
+        }
+        .btn-custom {
+            background: rgb(255, 255, 255);
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero img {
+                max-width: 80%;
+                height: auto;
+                margin-left: 0;
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            .content {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="text-center py-3">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="Mujtaba.html">My Portfolio</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="Mujtaba.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Project.html">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Skill.html">Skills</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div><a href="Mujtaba Asif Software Engineer Resume.pdf">
+            <img src="Mais.png" alt="Profile Image"></a></div>
+        <div class="col-md-6 content">
+            <h1>Mujtaba Asif</h1>
+            <p>I am a business and information systems graduate currently completing a 3-month software engineering internship, focusing on backend development with FastAPI (Python) and frontend work with JavaScript. Skilled in developing scalable solutions for e-commerce, healthcare, fitness, and mental health applications.</p>
+            <a href="Mujtaba.html" class="btn-custom">Explore Now</a>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

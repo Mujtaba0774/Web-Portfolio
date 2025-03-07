@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #03016e, #b8fa03);
+            color: #fff;
+            text-align: center;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #FFD700;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            background: #FFD700;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background: #FFC300;
+        }
+        .toggle {
+            margin-top: 20px;
+            color: #ff9b04;
+        }
+        .error-message {
+            margin-top: 20px;
+            color: #FF4500; /* Red color for error messages */
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Login / Register</h1>
+    </header>
+    <div class="container">
+        <h2>Existing User Login</h2>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" name="loginEmail" required>
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+            <input type="submit" value="Login">
+        </form>
+        <h2>New User Registration</h2>
+        <form id="registerForm" onsubmit="handleRegister(event)">
+            <label for="registerName">Name:</label>
+            <input type="text" id="registerName" name="registerName" required>
+            <label for="registerEmail">Email:</label>
+            <input type="email" id="registerEmail" name="registerEmail" required>
+            <label for="registerPassword">Password:</label>
+            <input type="password" id="registerPassword" name="registerPassword" required>
+            <input type="submit" value="Register">
+        </form>
+        <div class="toggle">
+            <p>Already have an account? <a href="#" style="color: #FFD700;">Login here</a></p>
+            <p>New user? <a href="#" style="color: #FFD700;">Register here</a></p>
+        </div>
+        <div class="error-message" id="errorMessage">
+            <p id="errorText"></p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Mujtaba Asif</p>
+    </footer>
+    <script>
+        function getUsers() {
+            const users = localStorage.getItem('users');
+            return users ? JSON.parse(users) : [];
+        }
+        function saveUsers(users) {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const users = getUsers();
+            const user = users.find(user => user.email === email && user.password === password);
+            if (user) {
+                window.location.href = "Mujtaba.html";
+            } else {
+                showError("Invalid email or password.");
+            }
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const users = getUsers();
+            const existingUser  = users.find(user => user.email === email);
+            if (existingUser ) {
+                showError("User  already found. Please use a different email.");
+            } else {
+                users.push({ name: name, email: email, password: password });
+                saveUsers(users);
+                window.location.href = "Mujtaba.html";
+            }
+        }
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            errorText.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

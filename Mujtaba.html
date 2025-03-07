@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mujtaba Asif - Portfolio</title>
+    <meta name="description" content="Mujtaba Asif's personal portfolio website.">
+    <meta property="og:image" content="Mais.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>           
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #03016e, #bbff00);
+            color: #fff;
+            text-align: center;
+        }
+        header, footer {
+            font-family: Sofia;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2px;  
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        h1, h1 {
+            color: #FFD700;
+            
+        }
+        h3 {
+            color: #f7f1d2;
+        }
+        a {
+            color: #ff9b04;
+            text-decoration: none;
+            font-weight: bold;
+            
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #FFD700;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background: #FFC300;
+        }
+        a:hover {
+            color: #fbff01;
+        }
+        a:active {
+            color: #ff0000;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.041);
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid #fff;
+            text-align: center;
+            color: white;
+        }
+        th {
+            background: #FFD700;
+            color: black;
+        }
+        .center-image {
+            display: block;
+            margin: auto;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000000;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(245, 238, 238, 0.908);
+            padding: 20px;
+            border-radius: 95px;
+            margin: 20px auto;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            border-radius: 10px;
+            mask-image: radial-gradient rgba(0, 0, 0, 0.882);
+        }
+        .desc {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .projects li {
+            margin-bottom: 10px;
+            list-style: none;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .projects li:hover {
+            transform: scale(1.2);
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .links {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .links a {
+            background: #fdcb03;
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            transition: 0.3s;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 20px;
+            display: inline-block; /* Ensures proper spacing */
+        }
+        .links a:hover {
+            background: #f5e615;
+            transform: scale(1.05);
+        }
+        .links a:active {
+            color: #FF4500;
+        }
+        .skills span {
+            background: #ffcc00;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            color: black;
+            transition: transform 0.3s;
+        }
+        .skills span:hover {
+            background: #d68205;
+            transform: scale(1.1);
+        }
+        .animation {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .animation img {
+            width: 30px;
+            animation: bounce 1.1s infinite;
+            margin-right: 10px;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4CAF50; 
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .chat-btn:hover{
+            background-color: #03f564;
+        }
+        .chat-box {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background: #1515b497;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-box:hover{
+            background-color: #03f564;
+        }
+        .chat-header {
+            background: #4CAF50; 
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .chat-body {
+            height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            background: #03f564; 
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            max-width: 80%;
+        }
+        .user-message {
+            align-self: flex-end;
+            background: #4CAF50;
+            color: white;
+        }
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            font-size: 14px;
+            background: #f1f1f1; 
+        }
+        .send-btn {
+            background: #4CAF50; 
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .send-btn:hover{
+            background-color: #06fc1a;
+        }
+        input[type="checkbox"] {
+            display: none;
+        }
+        input[type="checkbox"]:checked + .chat-box {
+            display: flex;
+        }
+        .center {
+            text-align: center;
+        }
+        .pagination {
+            display: inline-block;
+        }
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: rgb(252, 252, 252);
+            border: 1px solid #4CAF50;
+        }
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+        .search-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-container input {
+            padding: 10px;
+            width: 100px;
+            border-radius: 15px;
+            border: 1px solid #f8e003;
+        }
+        .search-container button {
+            padding: 10px 15px;
+            border: none;
+            background: #e2f107;
+            color: rgb(0, 0, 0);
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background: #03f564;
+        }
+        .highlight {
+            background-color: rgb(255, 0, 0);
+            font-weight: bold;
+        }
+        :root {
+            --color-python: #01569c;
+            --color-javascript: #F7DF1E;
+            --color-html: #E34F26;
+            --color-css: #1572B6;
+            --text-color: #ffffff;
+        }
+        canvas {
+            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+            .card {
+                padding: 15px;
+                margin: 8px;
+            }
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            .skills {
+                gap: 8px;
+            }
+            .skills span {
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+            .links a {
+                padding: 8px 15px;
+                font-size: 16px;
+                display: block;
+            }
+            .chat-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            .chat-box {
+                bottom: 70px;
+                right: 15px;
+                width: 280px;
+            }
+            .search-container {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin: 15px 0;
+            }
+            .search-container input {
+                width: 150px;
+                padding: 8px;
+            }
+            .dropdown-content {
+                min-width: 120px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            h2 {
+                font-size: 17px;
+            }
+            th, td {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            body {
+                background: linear-gradient(to bottom, #03016e, #bbff00);
+                font-size: small;
+            }
+            .card {
+                padding: 10px;
+                margin: 5px;
+            }
+            .skills span {
+                font-size: 12px;
+            }
+            .chat-box {
+                width: 90%;
+                right: 5%;
+            }
+            .message {
+                max-width: 90%;
+                font-size: 12px;
+            }
+            .animation img {
+                width: 25px;
+            }
+            .projects li {
+                padding: 8px;
+                font-size: 14px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 768px) {
+            /* Add this to keep chart size consistent */
+            #myChart {
+                width: 380px !important;  /* Fixed width */
+                height: 260px !important; /* Fixed height */
+            }
+            
+            /* Optional: Add horizontal scroll for chart container */
+            .card > div > div {
+                overflow-x: auto;
+                padding: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #myChart {
+                width: 380px !important;
+                height: 250px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mujtaba Asif</h1>
+        <div class="links">
+        <a href="mailto:mujtaba0774@gmail.com"target="_blank">Email</a> 
+            <a href="https://wa.me/+923214574973" target="_blank">Phone</a> 
+            <a href="Project.html">Projects</a>
+             <a href="Skill.html">Skills</a></div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search this site...">
+            <button onclick="searchSite()">Search</button>
+        </div>
+    </header>
+    <div class="container">
+        <div class="container fade-in">
+        <div id="summary" class="card">
+            <h1>Summary</h1>
+            <div class="dropdown">
+                <a href="Mujtaba Asif Software Engineer Resume.pdf" target="_blank">
+                <img src="Mais.png" alt="Mujtaba Asif" width="70" height="90" class="center-image"></a>
+                <div class="dropdown-content">
+                    <img src="Mais.png" alt="Mujtaba Asif" width="200" height="250" margin-radius="30px" class="center-image">
+                    <div class="desc">Mujtaba Asif</div>
+                </div>
+            </div>
+            <p>I am a Business and Information Systems graduate currently working as a Frontend Developer at ForronTech. I specialize in designing and developing dynamic responsive and user-friendly web interfaces using JavaScript and modern frontend frameworks. My work focuses on optimizing performance, ensuring cross-browser compatibility and enhancing user experience. I have experience building scalable solutions for industries such as e-commerce, healthcare, fitness and mental health. Passionate about clean code, UI/UX best practices and staying up to date with the latest frontend technologies.</p>
+            <a href="Mujtaba Asif Software Engineer Resume.pdf" target="_blank" class="btn">Download Resume</a>
+        </div>
+    </div>
+    <div class="container fade-in">
+        <div class="card">
+            <h1>Education</h1>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Degree</th>
+                        <th>Institution</th>
+                        <th>Year</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Bachelor of Business and Information Systems</strong></td>
+                        <td>University of Management and Technology, Lahore</td>
+                        <td>2024</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Intermediate in Computer Science (ICS)</strong></td>
+                        <td>Punjab College, Lahore</td>
+                        <td>2020</td>
+                    </tr>
+                </table>
+            </div>
+        </div> 
+        </div>   
+        <div class="container fade-in">
+        <div class="card">
+            <h1>Professional Experience</h1>
+            <h2>Frontend Developer - ForronTech, Hafeez Executive, Lahore</h2>
+            <p>August 2024 - November 2024</p>
+            <ul>
+                <br>Designed responsive front-end interfaces using JavaScript.</br>
+                <br>Developed dynamic user experiences with modern frontend frameworks.</br>
+                <br>Optimized web performance and ensured cross-browser compatibility.</br>
+            </ul>
+        </div>  
+    </div> 
+        <div class="container fade-in"> 
+            <div class="card">
+                <h1>Programming Languages Chart</h1>
+                <div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <canvas id="myChart" style="width:auto; max-width:600px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="container fade-in">
+        <div class="animation fade-in">
+            <a href="https://github.com/Mujtaba0774" target="_blank" title="GitHub Profile">
+                <img src="github.png" alt="GitHub Icon">
+            </a>
+            <a href="https://linkedin.com/in/mujtaba-asif-43b764319" target="_blank" title="LinkedIn Profile">
+                <img src="linkedin.png" alt="LinkedIn Icon">
+            </a>
+            <a href="mailto:mujtaba0774@gmail.com" title="Send Email">
+                <img src="email.png" alt="Email Icon">
+            </a>
+        </div>
+    </div>
+    </div>
+    <div>
+        <label for="chat-toggle" class="chat-btn">Chat</label>
+        <input type="checkbox" id="chat-toggle" />
+        <div class="chat-box">
+            <div class="chat-header">
+                Chat Support
+                <label for="chat-toggle" class="chat-close-btn">&times;</label>
+            </div>
+            <div class="chat-body">
+                <div class="message">Hello! How can I help you?</div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" class="chat-input" placeholder="Type a message...">
+                <button class="send-btn">Send</button>
+            </div>
+        </div>
+        <div class="center">
+            <div class="pagination">
+            <a href="Mujtaba.html"class="active">1</a>
+            <a href="Project.html">2</a>
+            <a href="Skill.html">3</a>
+            <a href="Project.html">&raquo;</a>
+        </div>
+        </div>  
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("searchButton").addEventListener("click", searchSite);
+        document.getElementById("searchInput").addEventListener("keypress", function (event) {
+         if (event.key === "Enter") {
+             searchSite();
+         }
+     });
+ });
+ let highlightedElements = [];
+ let currentHighlightIndex = -1;
+ let lastSearchQuery = "";
+ function searchSite() {
+     let query = document.getElementById('searchInput').value.trim();
+     if (!query) return;
+     if (query !== lastSearchQuery) {
+         clearHighlights();
+         highlightedElements = [];
+         currentHighlightIndex = -1;
+         lastSearchQuery = query;
+     }
+     if (highlightedElements.length > 0) {
+         moveToNextHighlight();
+         return;
+     }
+     let found = highlightText(document.body, query);
+     if (!found) {
+         showError(`No results found.`);
+     } else {
+         removeError();
+         if (highlightedElements.length > 0) {
+             currentHighlightIndex = 0;
+             scrollToHighlight();
+         }
+     }
+ }
+ function highlightText(node, query) {
+     let found = false;
+     if (node.nodeType === 3) { // Text node
+         let text = node.nodeValue.toLowerCase();
+         let queryLower = query.toLowerCase();
+         let matchIndex = text.indexOf(queryLower);
+         if (matchIndex !== -1) {
+             found = true;
+             let span = document.createElement('highlight');
+             span.className = 'highlight';
+             span.textContent = node.nodeValue.substr(matchIndex, query.length);
+             let afterText = document.createTextNode(node.nodeValue.substr(matchIndex + query.length));
+             let beforeText = document.createTextNode(node.nodeValue.substr(0, matchIndex));
+             let parent = node.parentNode;
+             parent.replaceChild(afterText, node);
+             parent.insertBefore(span, afterText);
+             parent.insertBefore(beforeText, span);
+             highlightedElements.push(span);
+         }
+     } else if (node.nodeType === 1 && node.childNodes) { // Element node
+         for (let i = node.childNodes.length - 1; i >= 0; i--) {
+             found = highlightText(node.childNodes[i], query) || found;
+         }
+     }
+     return found;
+ }
+ function moveToNextHighlight() {
+     if (highlightedElements.length === 0) return;
+     currentHighlightIndex = (currentHighlightIndex + 1) % highlightedElements.length;
+     scrollToHighlight();
+ }
+ function scrollToHighlight() {
+     if (highlightedElements[currentHighlightIndex]) {
+         highlightedElements[currentHighlightIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+     }
+ }
+ function clearHighlights() {
+     document.querySelectorAll('.highlight').forEach(span => {
+         span.replaceWith(document.createTextNode(span.textContent));
+     });
+     highlightedElements = [];
+     currentHighlightIndex = -1;
+     lastSearchQuery = "";
+ }
+ function showError(message) {
+     let existingError = document.getElementById('searchError');
+     if (existingError) {
+         existingError.remove();
+     }
+     let errorDiv = document.createElement('div');
+     errorDiv.id = 'searchError';
+     errorDiv.style.color = 'red';
+     errorDiv.style.marginTop = '10px';
+     errorDiv.textContent = message;
+     let searchContainer = document.querySelector('.search-container');
+     searchContainer.appendChild(errorDiv);
+ }
+ function removeError() {
+     let existingError = document.getElementById('searchError');
+     if (existingError) {
+         existingError.remove();
+     }
+ }
+     const xValues = ["Python", "JavaScript", "HTML", "CSS"];
+                const yValues = [66, 59, 78, 87];
+                const barColors = [
+                    getComputedStyle(document.documentElement).getPropertyValue('--color-python').trim(),
+                    getComputedStyle(document.documentElement).getPropertyValue('--color-javascript').trim(),
+                    getComputedStyle(document.documentElement).getPropertyValue('--color-css').trim(),
+                    getComputedStyle(document.documentElement).getPropertyValue('--color-html').trim(),
+                ];
+
+                const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim();
+
+                new Chart("myChart", {
+                    type: "doughnut",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            labels: {
+                                fontColor: textColor,
+                                fontSize: 14,
+                                fontStyle: 'bold'
+                            }
+                        }
+                    }
+                });
+
+                document.addEventListener("DOMContentLoaded", function () {
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const checkVisibility = () => {
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementBottom = element.getBoundingClientRect().bottom;
+            if (elementTop < window.innerHeight && elementBottom >= 0) {
+                element.classList.add('visible');
+            }
+        });
+    };
+
+    checkVisibility();
+    window.addEventListener('scroll', checkVisibility);
+});
+             </script>
+    <footer>
+         <p>&copy; 2025 Mujtaba Asif </p>
+    </footer>
+</body>
+</html>
